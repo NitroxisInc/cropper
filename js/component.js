@@ -181,8 +181,9 @@ var resizeableImage = function(image_target) {
     var left = $('.overlay').offset().left - $container.offset().left,
         top =  $('.overlay').offset().top - $container.offset().top,
         width = $('.overlay').width(),
-        height = $('.overlay').height();
-		
+        height = $('.overlay').height(),
+        output = $("#output-img");
+  
     crop_canvas = document.createElement('canvas');
     crop_canvas.width = width;
     crop_canvas.height = height;
@@ -192,8 +193,7 @@ var resizeableImage = function(image_target) {
     mcan.fillRect(0,0,width,height);
 
     mcan.drawImage(image_target, left, top, width, height, 0, 0, width, height);
-
-    window.open(crop_canvas.toDataURL("image/png"));
+    output.prop("src", crop_canvas.toDataURL("image/png"))
   }
 
   init();
